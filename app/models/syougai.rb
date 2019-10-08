@@ -1,0 +1,4 @@
+class Syougai < ApplicationRecord
+
+    
+end

@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  jichitai_cd: 1
+  jigyou_cd: 1
+  naiyou: MyText
+  jisyou: MyText
+  syochi: MyText
+  biko: MyText
+  enduser: MyString
+  motouke: MyString
+  syubetu_kbn: MyString
+  hosyu_kbn: MyString
+  renraku_d: 2019-08-20
+  renraku_t: 2019-08-20 06:59:17
+  syanai: 1.5
+  genchi_d: 2019-08-20
+  genchi_t: 2019-08-20 06:59:17
+  sagyou_d: 2019-08-20
+  sagyou_t: 2019-08-20 06:59:17
+  sagyoukei: 1.5
+  idou: 1.5
+  taiou1_cd: 1
+  taiou2_cd: 1
+  taiou3_cd: 1
+
+two:
+  jichitai_cd: 1
+  jigyou_cd: 1
+  naiyou: MyText
+  jisyou: MyText
+  syochi: MyText
+  biko: MyText
+  enduser: MyString
+  motouke: MyString
+  syubetu_kbn: MyString
+  hosyu_kbn: MyString
+  renraku_d: 2019-08-20
+  renraku_t: 2019-08-20 06:59:17
+  syanai: 1.5
+  genchi_d: 2019-08-20
+  genchi_t: 2019-08-20 06:59:17
+  sagyou_d: 2019-08-20
+  sagyou_t: 2019-08-20 06:59:17
+  sagyoukei: 1.5
+  idou: 1.5
+  taiou1_cd: 1
+  taiou2_cd: 1
+  taiou3_cd: 1

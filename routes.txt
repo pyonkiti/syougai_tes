@@ -1,0 +1,6 @@
+                   Prefix Verb URI Pattern                                                                              Controller#Action
+           syougais_index GET  /syougais/index(.:format)                                                                syougais#index
+            syougais_edit GET  /syougais/edit(.:format)                                                                 syougais#edit
+                          GET  /syougais/edit/:id(.:format)                                                             sougais#edit
+             syougais_add GET  /syougais/add(.:format)                                                                  syougais#add
+                     root GET  /                                                                                        syougais#edit

@@ -1,0 +1,2 @@
+module SyougaisHelper
+end

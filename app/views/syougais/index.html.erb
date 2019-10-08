@@ -1,0 +1,99 @@
+<div id="title">
+    <h2>障害検索</h2>
+</div>
+
+<%#= form_with(model: @syougai, local: true, url: syougais_index_path) do |f| %>
+<%= search_form_for @search do |f| %>
+    <div id="head">
+        <div>
+            <%= f.label :jichitai_cd, "　自治体／民間　" %>
+            <%= f.text_field :jichitai_cd_eq, size: 5 %>
+        </div>
+        <div>
+            <%= f.label :naiyou, "　　　　　内容　" %>
+            <%= f.text_field :naiyou_cont, size: 40 %>　（部分一致）
+        </div>
+        <div>
+            <%= f.label :jisyou, "　　現象／原因　" %>
+            <%= f.text_field :jisyou_cont, size: 40 %>　（部分一致）
+        </div>
+        <div>
+            <%= f.label :taiou_cd, "　　　　対応者　" %>
+            <%= f.text_field :taiou1_cd_or_taiou2_cd_or_taiou3_cd_eq, size: 3 %>
+        </div>
+        <div>
+            <%= f.label :renraku_d, "　　連絡受付日　" %>
+            <%= f.date_field :renraku_d_eq, size: 8 %>
+        </div>
+        <div>
+            <%= f.label :sagyou_d, "　　作業完了日　" %>
+            <%= f.date_field :sagyou_d_eq, size: 8 %>
+        </div>
+        <br>
+        <div>
+            <%= f.submit "検索" %>
+            <%# = f.submit "取消", type: :reset %>
+            <%= link_to '取消', syougais_path %>
+            <%= f.submit "CSV" %>
+        </div>
+        <br>
+        
+    </div>
+<% end %>
+
+
+<div id="title">
+    <h2>検索結果一覧</h2>
+</div>
+
+<div id="body">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>自治体／民間</th>
+                <th>事業</th>
+                <th>内容</th>
+                <th>現象／原因</th>
+                <th>処置</th>
+                <th>エンドユーザー</th>
+                <th>元請け</th>
+                <th>種別</th>
+                <th>保守区分</th>
+                <th>連絡受付日</th>
+                <th>作業完了日</th>
+                <th>作業者</th>
+                <th colspan = "2"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% @syougais.each do |s| %>
+                <tr>
+                    <td><%= s.id %></td>
+                    <td><%= s.jichitai_cd %></td>
+                    <td><%= s.jigyou_cd == 1 ? '上水' : '下水' %></td>
+                    <td><%= truncate(s.naiyou, length: 10) %></td>
+                    <td><%= s.jisyou %></td>
+                    <td><%= truncate(s.syochi, length: 10) %></td>
+                    <td><%= truncate(s.enduser, length: 10) %></td>
+                    <td><%= truncate(s.motouke, length: 10) %></td>
+                    <td><%= s.syubetu_kbn %></td>
+                    <td><%= s.hosyu_kbn %></td>
+                    <td><%= l s.renraku_d, format: :default unless s.renraku_d.nil? %></td>
+                    <td><%= l s.sagyou_d, format: :default unless s.sagyou_d.nil? %></td>
+                    <td><%= s.taiou1_cd %></td>
+                    <td><%= link_to '修正', edit_syougai_path(s) %></td>
+                    <td><%= link_to '削除', s, method: :delete, data: {confirm: '削除してよろしいですか？'} %></td>
+
+                </tr>
+            <% end %>
+
+        </tbody>
+    </table>
+</div>
+
+
+<div id="foot">
+    <%= link_to '新規', new_syougai_path %>
+</div>
