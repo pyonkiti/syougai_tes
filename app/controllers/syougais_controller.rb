@@ -1,11 +1,8 @@
 class SyougaisController < ApplicationController
   def index
-    #@syougais = Syougai.search
     @search = Syougai.ransack(params[:q])
     @syougais = @search.result(distinct: true)
                        .order(jichitai_cd: :asc, jigyou_cd: :asc)
-
-                       
                        
   end
 
@@ -18,8 +15,8 @@ class SyougaisController < ApplicationController
     if @syougai.update(syougai_params)
         respond_to do |f|
             # どっちで記述してもOK
-            #redirect_to action: 'index'
-            f.html { redirect_to syougais_path, notice: '更新できました' }
+            #redirect_to action: 'index', notice: '更新できました！'
+            f.html { redirect_to syougais_path, notice: '更新できました！' }
         end
     else
         redirect_to action: 'edit'
@@ -33,7 +30,7 @@ class SyougaisController < ApplicationController
   def create
     @syougai = Syougai.new(syougai_params)
     if @syougai.save
-        redirect_to action: 'index'
+        redirect_to action: 'index', notice: '登録できました！'
     else
         redirect_to action: 'new'
     end
@@ -43,7 +40,7 @@ class SyougaisController < ApplicationController
     @syougai = Syougai.find(params[:id])
     @syougai.destroy
     respond_to do |f|
-        f.html { redirect_to syougais_url, notice: '削除できました' }
+        f.html { redirect_to syougais_url, notice: '削除できました！' }
     end
   end
 
