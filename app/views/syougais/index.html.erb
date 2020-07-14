@@ -8,21 +8,30 @@
 <%= search_form_for @search do |f| %>
     <div id="head">
         <div>
-            <%= f.label :jichitai_cd, "　自治体／民間　" %>
-            <%= f.text_field :jichitai_cd_eq, size: 5 %>
+            <%= f.label :jichitai_cd, "　自治体" %>
+            <%= f.radio_button :jichitai_cd, 1  %>
+            <%= f.label :jichitai_cd, "　民間　" %>
+            <%= f.radio_button :jichitai_cd, 2 %>
         </div>
         <div>
-            <%= f.label :naiyou, "　　　　　内容　" %>
-            <%= f.text_field :naiyou_cont, size: 40 %>　（部分一致）
+            <%= f.label :jichitai_cd, "　　都道府県" %>
+            <%= f.select :jichitai_cd, ["滋賀県　　　"] %>
         </div>
         <div>
-            <%= f.label :jisyou, "　　現象／原因　" %>
-            <%= f.text_field :jisyou_cont, size: 40 %>　（部分一致）
+            <%= f.label :jichitai_cd, "　　　自治体" %>
+            <%= f.select :jichitai_cd, ["　　　　　　"] %>
+            <%= f.text_field :jichitai_cd, size: 40 %>
         </div>
         <div>
-            <%= f.label :taiou_cd, "　　　　対応者　" %>
-            <%= f.text_field :taiou1_cd_or_taiou2_cd_or_taiou3_cd_eq, size: 3 %>
+            <%= f.label :jichitai_cd, "　　民間企業" %>
+            <%= f.select :jichitai_cd, ["　　　　　　"] %>
+            <%= f.text_field :jichitai_cd, size: 40 %>
         </div>
+        <div>
+            <%= f.label :taiou_cd, "　　　対応者" %>
+            <%= f.text_field :taiou1_cd_or_taiou2_cd_or_taiou3_cd_eq, size: 10 %>
+        </div>
+        <!--  
         <div>
             <%= f.label :renraku_d, "　　連絡受付日　" %>
             <%= f.date_field :renraku_d_eq, size: 8 %>
@@ -31,12 +40,13 @@
             <%= f.label :sagyou_d, "　　作業完了日　" %>
             <%= f.date_field :sagyou_d_eq, size: 8 %>
         </div>
+         -->
         <br>
         <div>
             <%= f.submit "検索" %>
             <%# = f.submit "取消", type: :reset %>
-            <%= link_to '取消', syougais_path %>
-            <%= f.submit "CSV" %>
+            <%# = <%= link_to '取消', syougais_path %>
+            <%# = <%= f.submit "CSV" %>
         </div>
         <br>
         
@@ -52,13 +62,13 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <!-- <th>ID</th> -->
                 <th>自治体／民間</th>
+                <th>エンドユーザー</th>
                 <th>事業</th>
                 <th>内容</th>
                 <th>現象／原因</th>
                 <th>処置</th>
-                <th>エンドユーザー</th>
                 <th>元請け</th>
                 <th>種別</th>
                 <th>保守区分</th>
@@ -72,13 +82,13 @@
 
             <% @syougais.each do |s| %>
                 <tr>
-                    <td><%= s.id %></td>
+                    <!-- <td><%= s.id %></td> -->
                     <td><%= s.jichitai_cd %></td>
+                    <td><%= truncate(s.enduser, length: 10) %></td>
                     <td><%= s.jigyou_cd == 1 ? '上水' : '下水' %></td>
                     <td><%= truncate(s.naiyou, length: 10) %></td>
                     <td><%= s.jisyou %></td>
                     <td><%= truncate(s.syochi, length: 10) %></td>
-                    <td><%= truncate(s.enduser, length: 10) %></td>
                     <td><%= truncate(s.motouke, length: 10) %></td>
                     <td><%= s.syubetu_kbn %></td>
                     <td><%= s.hosyu_kbn %></td>
